@@ -49,6 +49,7 @@ background-color:#090613;
 padding: 0 30px;
 display: flex;
 align-items: center;
+overflow-x:hidden;
 
 `
 

@@ -35,7 +35,7 @@ const Container = styled.div
     margin-top:40px;
     display:grid;
     grid-template-columns: repeat(5, minmax(0,1fr));
-    grid-column-gap:25px;
+    grid-gap:25px;
 
     
     `

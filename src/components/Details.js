@@ -11,6 +11,27 @@ function Details() {
       <MovieTitle>
         <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2C5917FC19BF1C3380BE616572C129C282973BF087165533ED782E301ED7C4B8/scale?width=1344&aspectRatio=1.78&format=png' alt="movieTitle" />
       </MovieTitle>
+
+      <Controls>
+        <PlayButton>
+          <img src="/images/play-icon-black.png" alt="playbtn" />
+          <span>PLAY</span>
+        </PlayButton>
+        
+        <TrailerButton>
+          <img src="/images/play-icon-white.png" alt="playbtn" />
+          <span>TRAILER</span>
+        </TrailerButton>
+        
+        <AddButton>
+          <span>+</span>
+        </AddButton>
+
+        <GroupButton>
+          <img src="/images/group-icon.png" alt="grp" />
+        </GroupButton>
+
+      </Controls>
     </Container >
   )
 }
@@ -18,7 +39,7 @@ function Details() {
 export default Details
 
 const Container = styled.div`
-height: calc(100vh - 70px);
+height: calc(100vh -75px);
 padding:0 40px;
 margin-top:20px;
 `
@@ -52,4 +73,54 @@ img{
   object-fit:contain;
 }
 
+`
+
+const Controls = styled.div`
+display:flex;
+align-items:center;
+
+`
+
+const PlayButton = styled.button`
+border:none;
+border-radius:4px;
+background:#ffffff;
+margin-right:20px;
+padding: 3px 14px;
+display:flex;
+align-items:center;
+font-size:15px;
+letter-spacing:1.5px;
+cursor:pointer;
+
+&:hover{
+  background:rgb(198,198,198);
+}
+`
+
+const TrailerButton = styled(PlayButton)`
+
+background:rgba(0,0,0,0.3);
+border: 1px solid rgb(249,249,249);
+color: #ffffff;
+`
+
+const AddButton = styled.button`
+background:rgba(0,0,0,0.6);
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:50%;
+border:2px solid rgb(249,249,249);
+color:#ffffff;
+font-size:25px;
+margin-right: 16px;
+cursor:pointer;
+
+`
+
+const GroupButton = styled(AddButton)`
+background:rgba(0,0,0);
 `

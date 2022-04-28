@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import Details from './components/Details';
+import Login from './components/Login';
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,7 +17,7 @@ function App() {
         <Header />
         
         <Routes>
-
+        <Route path="/Login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/details" element={<Details />} />
         </Routes>

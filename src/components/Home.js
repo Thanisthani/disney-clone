@@ -1,10 +1,26 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styled from 'styled-components'
 import ImageSlider from './ImageSlider'
 import Viewers from './Viewers'
 import Movies from './Movies'
+import { db } from '../firbase'
+import { onSnapshot,collection } from '@firebase/firestore';
 
 function Home() {
+
+  useEffect(() => {
+    console.log("Hiii");
+    onSnapshot(collection(db, "movies"), (snapshot) => {
+      let temp_movies = snapshot.docs.map((doc) => {
+        console.log(doc.data)
+        return{id:doc.id,...doc.data()}
+      })
+
+      console.log(temp_movies)
+    })
+
+   
+  })
   return (
     <Container>
       

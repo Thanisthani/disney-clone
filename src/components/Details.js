@@ -32,6 +32,14 @@ function Details() {
         </GroupButton>
 
       </Controls>
+
+      <Subtitle>
+        lshhigfdliufd iufsdoiudafbr8ewiuijzn  kugfduhscxhgbfl
+      </Subtitle>
+
+      <Description>
+        fudgsii orfgyfbfdcdx oiuoywe98ydsh axugdcsaibcicugu gfcagcbigboiuhfsadihcbi ous dcasy dfsauygbcvdcsaauygbiuausguygwdafisgvkugfvb f ug frbsdiuguhnoiai hsjbloueiutrliuau xf uiydfgxkuugbfiu cfcw  erefiwug rgbduwc 9ruwhdb viugfboiqwidas,czbzuyfvchbf wryhfwduischjj vfuysdgqefdh gef o8greo8dfgabufd bibSDIYUGidufogb  sdo8gbczbhb9uufdfyds arfdys9u yasdiu fg iugifohgrauoiuasgddup  
+      </Description>
     </Container >
   )
 }
@@ -123,4 +131,16 @@ cursor:pointer;
 
 const GroupButton = styled(AddButton)`
 background:rgba(0,0,0);
+`
+const Subtitle = styled.p`
+font-size:15px;
+color:#ffffff;
+margin-top: 24px;
+`
+
+const Description = styled.p`
+font-size:17px;
+color:#ffffff;
+line-height:1.3;
+letter-spacing:1.4px;
 `

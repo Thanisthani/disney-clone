@@ -1,15 +1,33 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
+import { doc, getDoc } from "firebase/firestore";
+import db from '../firbase'
 
 function Details() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+
+  useEffect(() => {
+    const ref = doc(db, 'movies', id)
+     getDoc(ref)
+      .then((doc) => {
+        console.log(doc.data());
+        setMovie(doc.data());
+      });
+
+  },[id])
   return (
     <Container>
+    { movie && (
+      <>
+   
       <Background>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2C42A74B2CCC3E1FEC11B09A3EFF12DEB1A29663740CDAEBB5EFC713B9F97235/scale?width=1920&aspectRatio=1.78&format=jpeg" alt="Movies"/>
+        <img src={movie.bgImg} alt="Movies"/>
       </Background>
 
       <MovieTitle>
-        <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2C5917FC19BF1C3380BE616572C129C282973BF087165533ED782E301ED7C4B8/scale?width=1344&aspectRatio=1.78&format=png' alt="movieTitle" />
+        <img src={movie.titleImg} alt="movieTitle" />
       </MovieTitle>
 
       <Controls>
@@ -40,7 +58,10 @@ function Details() {
       <Description>
         fudgsii orfgyfbfdcdx oiuoywe98ydsh axugdcsaibcicugu gfcagcbigboiuhfsadihcbi ous dcasy dfsauygbcvdcsaauygbiuausguygwdafisgvkugfvb f ug frbsdiuguhnoiai hsjbloueiutrliuau xf uiydfgxkuugbfiu cfcw  erefiwug rgbduwc 9ruwhdb viugfboiqwidas,czbzuyfvchbf wryhfwduischjj vfuysdgqefdh gef o8greo8dfgabufd bibSDIYUGidufogb  sdo8gbczbhb9uufdfyds arfdys9u yasdiu fg iugifohgrauoiuasgddup  
       </Description>
-    </Container >
+ 
+    </> 
+      )}
+         </Container >
   )
 }
 

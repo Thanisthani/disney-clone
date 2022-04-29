@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ImageSlider from './ImageSlider'
 import Viewers from './Viewers'
 import Movies from './Movies'
-import { db } from '../firbase'
+import db from '../firbase'
 import { onSnapshot,collection } from '@firebase/firestore';
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
     console.log("Hiii");
     onSnapshot(collection(db, "movies"), (snapshot) => {
       let temp_movies = snapshot.docs.map((doc) => {
-        console.log(doc.data)
+        console.log("data" + doc.data)
         return{id:doc.id,...doc.data()}
       })
 

@@ -1,14 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
+import { selectMovies } from "../features/movie/MovieSlicer"
+import {useSelector} from'react-redux'
 
 function Movies() {
+    const movies = useSelector(selectMovies);
+    console.log(movies);
   return (
       <Container>
           <h4>Recommend For You</h4>
           <Content>
-              <Warp>
-                  <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/07/THOR-LOVE-AND-THUNDER-UPDATE.jpg?q=50&fit=contain&w=960&h=480&dpr=1.5" alt="movie"/>    
+              {movies && movies.map((movie) =>
+              (
+                  <Warp key={movie.id}>
+                      
+                      <img src={movie.cardImg } alt="movie"/>    
               </Warp>
+                  
+              ))}
+              
               
               <Warp>
                   <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/07/THOR-LOVE-AND-THUNDER-UPDATE.jpg?q=50&fit=contain&w=960&h=480&dpr=1.5" alt="movie"/>    

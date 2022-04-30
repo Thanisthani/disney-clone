@@ -1,10 +1,57 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useSelector, useDispatch } from "react-redux"
+import { selectUserphoto, selectUsername, setUser, setSignOut } from "../features/user/UserSlicer" 
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+
+
+
 function Header() {
+  const username = useSelector(selectUsername);
+  const userphoto = useSelector(selectUserphoto);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // authentication
+  const provider = new GoogleAuthProvider();
+
+  const signIn = () => {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        let user = result.user;
+        dispatch(setUser({
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL
+        }))
+        navigate('/');
+      })
+  }
+
+  const userSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(setSignOut());
+        navigate('/login');
+        
+ }
+      )
+  }
+
   return (
     <Nav>
       <Logo src="/images/logo.svg" />
-      <NavMenu>
+      { !username ? 
+        <LoginContainer>
+          <Login onClick={signIn}>Login</Login>
+        </LoginContainer>
+        :
+        <>
+         <NavMenu>
         <a href="https://drive.google.com/drive/folders/1WvkQNhmD-PsgT5KVEvwpa7MTfx4ByBlx" >
           <img src="/images/home-icon.svg" alt="home"/>
           <span>Home</span>
@@ -34,7 +81,11 @@ function Header() {
 
         
       </NavMenu>
-      <UserImg src="https://randomuser.me/api/portraits/men/94.jpg"/>
+          <UserImg onClick={userSignOut} src={ userphoto}/>
+        </>
+      }
+
+     
     
     </Nav>
    
@@ -49,7 +100,7 @@ background-color:#090613;
 padding: 0 30px;
 display: flex;
 align-items: center;
-overflow-x:hidden;
+overflow:hidden;
 
 `
 
@@ -120,5 +171,25 @@ border-radius:50%;
 cursor: pointer;
 `
 
+const LoginContainer = styled.div`
+flex:1;
+display:flex;
+justify-content:flex-end;
+`
+
+const Login = styled.p`
+border: 1px solid #ffffff;
+border-radius:6px;
+background-color:rgba(0,0,0,0.6);
+padding: 8px 20px;
+letter-spacing:1.5px;
+font-weight:600;
+cursor: pointer;
+
+&:hover{
+  background-color:#f9f9f9;
+  color:#000000;
+}
+`
 
 export default Header
